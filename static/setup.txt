@@ -1,0 +1,126 @@
+includeLibs.tx_cssstyledcontent_pi1 = EXT:css_styled_content/pi1/class.tx_cssstyledcontent_pi1.php
+
+tt_content.textpic.20 < tt_content.image.20
+tt_content.textpic.20 = USER
+tt_content.textpic.20 {
+	userFunc = tx_cssstyledimgtext_pi1->render_textpic
+	1.params >
+	text.10 = COA
+	text.10 {
+		if.value = 24
+		if.isGreaterThan.field = imageorient
+		10 = < lib.stdheader
+		10.stdWrap.dataWrap = <div class="csc-textpicHeader csc-textpicHeader-{field:imageorient}">|</div>
+	}
+	text.20 = < tt_content.text.20
+}
+
+plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
+	/* 
+	   Licensed under the GPL, see http://www.gnu.org/copyleft/gpl.html
+	   (c) the TYPO3 content rendering group 
+	*/
+	
+	/* COMMON */
+	.csi-textpic {
+		padding: 5px;
+		background: #DDDDFF;  /*XXX demo only*/
+		border: 2px solid green;  /*XXX demo only*/
+	}
+	
+	.csi-textpic img {
+		border: 1px solid black;  /*XXX demo only*/
+		margin: 4px;
+	}
+	
+	.csi-textpic .csi-caption {
+		text-align: center;  /* will have to be an inline style?  - controlled by TS [left - right - center]*/
+		font-style: italic;  /*XXX demo only*/
+	}
+	
+	.csi-textpic .csi-image {
+		border: 1px solid red;  /*XXX demo only*/
+		margin: 0 0 3px 0;  /*XXX demo only*/
+		background: #FFF;  /*XXX demo only*/
+		width: 210px; /*will have to be an inline style - controlled by TS*/
+	}
+	
+	.csi-textpic .csi-imagewrap {
+		border: 1px solid blue; /*XXX demo only*/
+	}
+	
+	.csi-textpic .csi-text {
+		border: 1px solid silver; /*XXX demo only*/
+		text-align: left; /*will have to be an inline style - controlled by TS*/ 
+	}
+	
+	.csi-text p {
+		margin-top: 0;
+	}
+	
+	/* CENTER */
+	
+	.csi-center .csi-image {
+		margin: 0 auto 3px;
+	
+	}
+	
+	/* RIGHT */
+	.csi-right div.csi-image {
+		float: right;
+		clear: both;
+	}
+	
+	.csi-right div.csi-text {
+		clear: right;
+	}
+	
+	
+	/* LEFT */
+	.csi-left div.csi-image {
+		float: left;
+		clear: both;
+	}
+	
+	.csi-left div.csi-text {
+		clear: left;
+	}
+	
+	
+	/* INTEXT LEFT */
+	.csi-intext-left .csi-image {
+		float: left;
+		clear: both;
+		margin-right: 5px;
+	}
+	
+	
+	/* INTEXT RIGHT */
+	.csi-intext-right .csi-image {
+		float: right;
+		clear: both;
+		margin-left: 5px;
+	}
+	
+	
+	/* INTEXT RIGHT NOWRAP */
+	.csi-intext-right-nowrap .csi-text {
+		margin-right: 215px; /*will have to be an inline style - controlled by TS*/
+	}
+	
+	.csi-intext-right-nowrap .csi-image {
+		float: right;
+		clear: both;
+	}
+	
+	
+	/* INTEXT LEFT NOWRAP*/	
+	.csi-intext-left-nowrap .csi-text {
+		margin-left: 215px; /*will have to be an inline style - controlled by TS*/
+	}
+	
+	.csi-intext-left-nowrap .csi-image {
+		float: left;
+		clear: both;
+	}
+)
