@@ -15,20 +15,48 @@ class tx_cssstyledimgtext_pi1 extends tx_cssstyledcontent_pi1 {
 		'25' => 'csi-intext-right-nowrap', // 'textpic-intext-right-nowrap',
 		'26' => 'csi-intext-left-nowrap', // 'textpic-intext-left-nowrap'
 	);
+	var $aligns = array(
+		'center' => 'csi-caption-c',
+		'right' => 'csi-caption-r', 
+		'left' => 'csi-caption-l',
+	);
 	function newImgText($conf) {
-		//debug($conf, 'testname', __LINE__, __FILE__);
+
 		extract($conf);
 
-		foreach($imgsTag as $imgTag) {
-			$images[] = '
-				<div class="csi-image">'
-					.$imgTag
-					.'<div class="csi-caption"> '.$caption.' </div>
-	    		</div>
-			';
+		
+		$this->cObj->data['imagecaption_position']; // has to be put into caption class
+		
+
+		if($this->cObj->data['tx_cssstyledimgtext_floathorizontal']) {
+			foreach($imgsTag as $key => $imgTag) {
+				$images .= '
+					<dt>'.$imgTag.'</dt>
+				';
+				
+				if($captionArray[$key]) {
+					$images .= '
+						<dd class="csi-caption '.( 
+							$this->cObj->data['imagecaption_position']?
+							$this->aligns[$this->cObj->data['imagecaption_position']]:
+							''
+						)
+						.'"> '.$captionArray[$key].' </dd>
+					';
+				}
+			}
+			$images = '<dl class="csi-image">'.$images.'</dl>';
+		} else {
+			foreach($imgsTag as $key => $imgTag) {
+				$images .= '
+					<dl class="csi-image">
+						<dt>'.$imgTag.'</dt>
+						<dd class="csi-caption"> '.$captionArray[$key].' </dd>
+					</dl>
+				';
+			}
 		}
 
-		$images = implode('',$images);
 		$imagebox = '<div class="csi-imagewrap">'.$images.'</div>'; 
 		$content = '<div class="csi-text">'.$content.'</div>';
 
@@ -330,9 +358,9 @@ class tx_cssstyledimgtext_pi1 extends tx_cssstyledcontent_pi1 {
 				// put all variables that are needed for the new implementation in one conf array.
 
 			if(t3lib_div::GPVar('old')) {
-				$output = $this->oldImgText(compact('content', 'caption','borderColor', 'borderThickness', 'border', 'txtMarg', 'cap', 'align', 'contentPosition', 'tmppos', 'position', 'captionArray', 'imgPath', 'imgsTag', 'origImages', 'imageRowsFinalWidths', 'imageRowsMaxHeights','tableWidth', 'noCols', 'noRows', 'rowCount', 'colCount', 'rowspan', 'colspan', 'conf', 'colCount_temp', 'rowCount_temp', 'splitArr', 'colRelations', 'maxW', 'caption_align'));
+				$output = $this->oldImgText(compact('captionArray', 'content', 'caption','borderColor', 'borderThickness', 'border', 'txtMarg', 'cap', 'align', 'contentPosition', 'tmppos', 'position', 'captionArray', 'imgPath', 'imgsTag', 'origImages', 'imageRowsFinalWidths', 'imageRowsMaxHeights','tableWidth', 'noCols', 'noRows', 'rowCount', 'colCount', 'rowspan', 'colspan', 'conf', 'colCount_temp', 'rowCount_temp', 'splitArr', 'colRelations', 'maxW', 'caption_align'));
 			} else {
-				$output = $this->newImgText(compact('content', 'caption','borderColor', 'borderThickness', 'border', 'txtMarg', 'cap', 'align', 'contentPosition', 'tmppos', 'position', 'captionArray', 'imgPath', 'imgsTag', 'origImages', 'imageRowsFinalWidths', 'imageRowsMaxHeights','tableWidth', 'noCols', 'noRows', 'rowCount', 'colCount', 'rowspan', 'colspan', 'conf', 'colCount_temp', 'rowCount_temp', 'splitArr', 'colRelations', 'maxW', 'caption_align'));
+				$output = $this->newImgText(compact('captionArray', 'content', 'caption','borderColor', 'borderThickness', 'border', 'txtMarg', 'cap', 'align', 'contentPosition', 'tmppos', 'position', 'captionArray', 'imgPath', 'imgsTag', 'origImages', 'imageRowsFinalWidths', 'imageRowsMaxHeights','tableWidth', 'noCols', 'noRows', 'rowCount', 'colCount', 'rowspan', 'colspan', 'conf', 'colCount_temp', 'rowCount_temp', 'splitArr', 'colRelations', 'maxW', 'caption_align'));
 			}
 
 		} else {
