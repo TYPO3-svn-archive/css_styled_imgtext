@@ -3,6 +3,11 @@ includeLibs.tx_cssstyledcontent_pi1 = EXT:css_styled_content/pi1/class.tx_csssty
 tt_content.textpic.20 < tt_content.image.20
 tt_content.textpic.20 = USER
 tt_content.textpic.20 {
+	captionSplit.stdWrap.fontTag >
+	caption.stdWrap.fontTag >
+	captionSplit.stdWrap.wrapAlign >
+	caption.1.wrapAlign >
+	captionSplit = 1
 	userFunc = tx_cssstyledimgtext_pi1->render_textpic
 	1.params >
 	text.10 = COA
@@ -42,7 +47,7 @@ plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
 		border: 1px solid red;  /*XXX demo only*/
 		margin: 0 0 3px 0;  /*XXX demo only*/
 		background: #FFF;  /*XXX demo only*/
-		width: 210px; /*will have to be an inline style - controlled by TS*/
+		/*width: 210px; will have to be an inline style - controlled by TS*/
 	}
 	
 	.csi-textpic .csi-imagewrap {
@@ -105,7 +110,7 @@ plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
 	
 	/* INTEXT RIGHT NOWRAP */
 	.csi-intext-right-nowrap .csi-text {
-		margin-right: 215px; /*will have to be an inline style - controlled by TS*/
+		/*margin-right: 215px; will have to be an inline style - controlled by TS*/
 	}
 	
 	.csi-intext-right-nowrap .csi-image {
@@ -116,7 +121,7 @@ plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
 	
 	/* INTEXT LEFT NOWRAP*/	
 	.csi-intext-left-nowrap .csi-text {
-		margin-left: 215px; /*will have to be an inline style - controlled by TS*/
+		 /*margin-left: 215px;will have to be an inline style - controlled by TS*/
 	}
 	
 	.csi-intext-left-nowrap .csi-image {
