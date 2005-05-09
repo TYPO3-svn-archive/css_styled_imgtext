@@ -112,6 +112,12 @@ plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
 	.csi-intext-right-nowrap .csi-text {
 		/*margin-right: 215px; will have to be an inline style - controlled by TS*/
 	}
+
+	/* Hide from IE5-mac. Only IE-win sees this. \*/
+	*html .csi-intext-right-nowrap .csi-text {
+		height: 1%;
+	}
+	/* End hide from IE5/mac */ 
 	
 	.csi-intext-right-nowrap .csi-image {
 		float: right;
@@ -123,6 +129,12 @@ plugin.tx_cssstyledimgtext._CSS_DEFAULT_STYLE (
 	.csi-intext-left-nowrap .csi-text {
 		 /*margin-left: 215px;will have to be an inline style - controlled by TS*/
 	}
+
+	/* Hide from IE5-mac. Only IE-win sees this. \*/
+	*html .csi-intext-left-nowrap .csi-text {
+		height: 1%;
+	}
+	/* End hide from IE5/mac */
 	
 	.csi-intext-left-nowrap .csi-image {
 		float: left;
